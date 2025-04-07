@@ -26,7 +26,6 @@ class StorageService {
       }
     } catch (error) {
       console.error(`Error saving ${this.entityName}:`, error)
-      // Don't throw the error, just log it
     }
   }
 

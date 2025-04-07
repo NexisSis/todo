@@ -108,7 +108,6 @@ export const useTodoListStore = defineStore('todoList', {
         console.log('Todos cleared successfully')
       } catch (error) {
         console.error('Error clearing todos:', error)
-        // Don't clear todos if storage operation fails
       }
     }
   }
