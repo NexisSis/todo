@@ -86,10 +86,10 @@ export const useTodoListStore = defineStore('todoList', {
 
         // Create the new todos array without the deleted todo
         const updatedTodos = this.todos.filter((todo) => todo.id !== id)
-        
+
         // Update the store state first
         this.todos = updatedTodos
-        
+
         // Then save to storage
         await this.storage.save(updatedTodos)
         console.log('Todo deleted successfully')

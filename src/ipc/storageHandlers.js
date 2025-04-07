@@ -47,4 +47,4 @@ export const handleStorageClear = async (event, entityName) => {
     console.error(`Error clearing ${entityName}:`, error)
     return false
   }
-} 
+}

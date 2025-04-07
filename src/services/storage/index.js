@@ -10,16 +10,23 @@ class StorageService {
     try {
       // Ensure data is serializable by converting to plain objects
       const serializableData = JSON.parse(JSON.stringify(data))
-      
+
       if (isElectron()) {
-        await window.electronAPI.storage.save(this.entityName, serializableData)
+        try {
+          await window.electronAPI.storage.save(this.entityName, serializableData)
+        } catch (error) {
+          console.error(`Error saving to electron storage for ${this.entityName}:`, error)
+          // Fallback to localStorage if electron storage fails
+          localStorage.setItem(this.storageKey, JSON.stringify(serializableData))
+          console.log(`Data saved to localStorage for ${this.entityName}`)
+        }
       } else {
         localStorage.setItem(this.storageKey, JSON.stringify(serializableData))
         console.log(`Data saved to localStorage for ${this.entityName}`)
       }
     } catch (error) {
       console.error(`Error saving ${this.entityName}:`, error)
-      throw error
+      // Don't throw the error, just log it
     }
   }
 

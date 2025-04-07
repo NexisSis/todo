@@ -3,7 +3,9 @@
     <TodoItem
       v-for="todo in todos"
       :key="todo.id"
-      :todo="todo"
+      :completed="todo.completed"
+      :id="todo.id"
+      :text="todo.text"
       @toggle-todo="toggleTodo"
       @remove-todo="removeTodo"
     />
