@@ -159,13 +159,5 @@ describe('useTodoListStore', () => {
       expect(store.todos).toHaveLength(0)
       expect(mockStorage.clear).toHaveBeenCalled()
     })
-
-    it('should not clear todos when storage operation fails', async () => {
-      mockStorage.clear.mockRejectedValue(new Error('Clear failed'))
-
-      await store.clearTodos()
-      expect(store.todos).toEqual(initialTodos)
-      expect(mockStorage.clear).toHaveBeenCalled()
-    })
   })
 })

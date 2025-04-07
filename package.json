@@ -8,7 +8,7 @@
   "scripts": {
     "start": "electron .",
     "dev": "vite",
-    "electron:dev": "concurrently \"vite\" \"wait-on tcp:${VITE_DEV_SERVER_PORT:-5173} && cross-env NODE_ENV=development electron . --inspect=5858\"",
+    "electron:dev": "concurrently -k -s first \"vite\" \"wait-on tcp:${VITE_DEV_SERVER_PORT:-5173} && cross-env NODE_ENV=development electron . --inspect=5858\"",
     "build": "vite build",
     "preview": "vite preview",
     "electron:build": "vite build && cross-env NODE_ENV=production electron .",
@@ -31,6 +31,7 @@
     "@vitejs/plugin-vue": "^5.0.3",
     "@vitest/coverage-v8": "^3.1.1",
     "@vitest/ui": "^3.1.1",
+    "@vue/test-utils": "^2.4.4",
     "@vue/eslint-config-prettier": "^10.2.0",
     "@vue/eslint-config-typescript": "^14.5.0",
     "autoprefixer": "^10.4.16",

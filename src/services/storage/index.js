@@ -26,14 +26,22 @@ class StorageService {
       }
     } catch (error) {
       console.error(`Error saving ${this.entityName}:`, error)
+      // Don't throw the error, just log it
     }
   }
 
   async load() {
     try {
       if (isElectron()) {
-        const data = await window.electronAPI.storage.load(this.entityName)
-        return data || []
+        try {
+          const data = await window.electronAPI.storage.load(this.entityName)
+          return data || []
+        } catch (error) {
+          console.error(`Error loading from electron storage for ${this.entityName}:`, error)
+          // Fallback to localStorage if electron storage fails
+          const data = localStorage.getItem(this.storageKey)
+          return data ? JSON.parse(data) : []
+        }
       }
 
       const data = localStorage.getItem(this.storageKey)
@@ -48,9 +56,16 @@ class StorageService {
   async clear() {
     try {
       if (isElectron()) {
-        await window.electronAPI.storage.clear(this.entityName)
+        try {
+          await window.electronAPI.storage.clear(this.entityName)
+        } catch (error) {
+          console.error(`Error clearing electron storage for ${this.entityName}:`, error)
+          // Fallback to localStorage if electron storage fails
+          localStorage.removeItem(this.storageKey)
+        }
+      } else {
+        localStorage.removeItem(this.storageKey)
       }
-      localStorage.removeItem(this.storageKey)
       console.log(`Data cleared from localStorage for ${this.entityName}`)
     } catch (error) {
       console.error(`Error clearing ${this.entityName}:`, error)
