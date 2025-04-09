@@ -1,6 +1,6 @@
 <template>
-  <div class="max-w-2xl mx-auto p-5 font-sans">
-    <h1 class="text-center text-gray-800 text-3xl font-bold mb-8">Todo List</h1>
+  <div class="app">
+    <h1 class="app__title">Todo List</h1>
     <TodoInput @add-todo="handleAddTodo" />
     <TodoList
       :todos="todoListStore.todos"
@@ -34,3 +34,20 @@ const handleDeleteTodo = async (id) => {
   await todoListStore.deleteTodo(id)
 }
 </script>
+
+<style scoped>
+.app {
+  max-width: 42rem;
+  margin: 0 auto;
+  padding: 1.25rem;
+  font-family: system-ui, -apple-system, sans-serif;
+}
+
+.app__title {
+  text-align: center;
+  color: var(--color-text-primary);
+  font-size: 1.875rem;
+  font-weight: bold;
+  margin-bottom: 2rem;
+}
+</style>

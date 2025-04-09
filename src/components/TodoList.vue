@@ -1,5 +1,5 @@
 <template>
-  <ul class="list-none p-0">
+  <ul class="todo-list">
     <TodoItem
       v-for="todo in todos"
       :key="todo.id"
@@ -32,3 +32,10 @@ const removeTodo = (id) => {
   emit('remove-todo', id)
 }
 </script>
+
+<style scoped>
+.todo-list {
+  list-style: none;
+  padding: 0;
+}
+</style>

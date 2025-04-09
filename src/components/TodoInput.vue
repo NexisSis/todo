@@ -1,10 +1,10 @@
 <template>
-  <div class="flex gap-2.5 mb-5">
+  <div class="todo-input">
     <input
       v-model="inputValue"
       @keyup.enter="handleSubmit"
       placeholder="Add a new task..."
-      class="flex-1 px-2.5 py-2.5 border border-gray-300 rounded-md text-base focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent"
+      class="todo-input__field"
     />
     <TodoButton @click="handleSubmit">Add</TodoButton>
   </div>
@@ -25,3 +25,31 @@ const handleSubmit = () => {
 
 const emit = defineEmits(['add-todo'])
 </script>
+
+<style scoped>
+.todo-input {
+  display: flex;
+  gap: 0.625rem;
+  margin-bottom: 1.25rem;
+}
+
+.todo-input__field {
+  flex: 1;
+  padding: 0.625rem;
+  border: 1px solid var(--color-border-default);
+  border-radius: 0.375rem;
+  font-size: 1rem;
+  color: var(--color-text-primary);
+  background-color: var(--color-white);
+}
+
+.todo-input__field:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px var(--color-primary);
+  border-color: var(--color-transparent);
+}
+
+.todo-input__field::placeholder {
+  color: var(--color-text-muted);
+}
+</style>

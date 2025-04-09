@@ -1,12 +1,12 @@
 <template>
-  <li class="flex items-center p-2.5 bg-gray-50 rounded-md mb-2.5">
+  <li class="todo-item">
     <input
       type="checkbox"
       :checked="completed"
       @change="toggleTodo"
-      class="mr-2.5 w-4 h-4 text-green-500 rounded focus:ring-green-500"
+      class="todo-item__checkbox"
     />
-    <span :class="{ 'line-through text-gray-500': completed }" class="flex-1">
+    <span :class="{ 'todo-item__text--completed': completed }" class="todo-item__text">
       {{ text }}
     </span>
     <TodoButton type="delete" @click="removeTodo">×</TodoButton>
@@ -41,3 +41,37 @@ const removeTodo = () => {
   emit('remove-todo', props.id)
 }
 </script>
+
+<style scoped>
+.todo-item {
+  display: flex;
+  align-items: center;
+  padding: 0.625rem;
+  background-color: var(--color-bg-light);
+  border-radius: 0.375rem;
+  margin-bottom: 0.625rem;
+}
+
+.todo-item__checkbox {
+  margin-right: 0.625rem;
+  width: 1rem;
+  height: 1rem;
+  color: var(--color-primary);
+  border-radius: 0.25rem;
+}
+
+.todo-item__checkbox:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px var(--color-primary);
+}
+
+.todo-item__text {
+  flex: 1;
+  color: var(--color-text-primary);
+}
+
+.todo-item__text--completed {
+  text-decoration: line-through;
+  color: var(--color-text-muted);
+}
+</style>

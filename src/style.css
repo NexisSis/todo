@@ -1,3 +1,26 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+:root {
+  --color-primary: #4CAF50;
+  --color-primary-hover: #45a049;
+  --color-danger: #dc3545;
+  --color-danger-hover: #c82333;
+  
+  --color-gray-50: #f9fafb;
+  --color-gray-300: #d1d5db;
+  --color-gray-500: #6b7280;
+  --color-gray-800: #1f2937;
+  
+  --color-white: #ffffff;
+  --color-transparent: transparent;
+  
+  --color-text-primary: var(--color-gray-800);
+  --color-text-muted: var(--color-gray-500);
+  
+  --color-border-default: var(--color-gray-300);
+  
+  --color-bg-light: var(--color-gray-50);
+  --color-bg-transparent: var(--color-transparent);
+}
+
+*:focus {
+  outline: none;
+}
