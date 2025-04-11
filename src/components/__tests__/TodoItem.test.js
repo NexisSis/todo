@@ -28,8 +28,7 @@ describe('TodoItem', () => {
     })
 
     const textSpan = wrapper.find('span')
-    expect(textSpan.classes()).toContain('line-through')
-    expect(textSpan.classes()).toContain('text-gray-500')
+    expect(textSpan.classes()).toContain('todo-item__text--completed')
   })
 
   it('emits toggle-todo event when checkbox is clicked', async () => {

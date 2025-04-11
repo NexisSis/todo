@@ -11,8 +11,8 @@ describe('TodoButton', () => {
     })
 
     expect(wrapper.text()).toBe('Click me')
-    expect(wrapper.classes()).toContain('bg-primary')
-    expect(wrapper.classes()).toContain('text-white')
+    expect(wrapper.classes()).toContain('todo-button')
+    expect(wrapper.classes()).toContain('todo-button--primary')
   })
 
   it('renders with delete type', () => {
@@ -26,8 +26,8 @@ describe('TodoButton', () => {
     })
 
     expect(wrapper.text()).toBe('×')
-    expect(wrapper.classes()).toContain('bg-transparent')
-    expect(wrapper.classes()).toContain('text-danger')
+    expect(wrapper.classes()).toContain('todo-button')
+    expect(wrapper.classes()).toContain('todo-button--delete')
   })
 
   it('emits click event when clicked', async () => {
